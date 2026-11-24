@@ -1,0 +1,84 @@
+.journey { background: var(--sky-deep); border-bottom: 4px solid var(--ink); }
+.journey .section-title { color: var(--cream); }
+.journey .section-desc { color: #dbe6ff; }
+
+.journey-map { position: relative; margin: 50px 0 30px; }
+.map-path {
+  position: absolute;
+  top: 34px; left: 0; right: 0;
+  height: 100px;
+  z-index: 0;
+}
+.map-path svg { width: 100%; height: 100%; }
+
+.level-nodes {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.level-node {
+  position: relative;
+  background: transparent;
+  border: none;
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 4px;
+}
+.node-marker {
+  width: 88px; height: 88px;
+  background: var(--ink-soft);
+  border: 4px solid var(--cream);
+  box-shadow: var(--shadow-pixel);
+  display: grid;
+  place-items: center;
+  transition: transform 0.15s, background 0.15s, border-color 0.15s;
+}
+.level-node:hover .node-marker { transform: translateY(-6px); background: var(--brick); }
+.level-node.active .node-marker {
+  background: var(--brick);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px var(--gold), var(--shadow-pixel-lg);
+  animation: shine 1.8s ease-in-out infinite;
+}
+.node-level { font-size: 8px; color: var(--gold); margin-top: 14px; }
+.node-company { font-size: 14px; font-weight: 700; margin-top: 6px; text-align: center; }
+.node-year { font-size: 8px; color: #b9c8ee; margin-top: 4px; }
+.node-flag { position: absolute; top: -18px; color: var(--gold); font-size: 16px; animation: bob 1s steps(3) infinite; }
+
+.journey-detail {
+  margin-top: 20px;
+  padding: 30px;
+}
+/* 切换关卡时内容淡入，容器本身不再重建 */
+.deep-fade {
+  animation: deep-fade 0.32s ease both;
+}
+@keyframes deep-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.detail-head { display: flex; align-items: flex-start; gap: 18px; border-bottom: 3px dashed #4a4f70; padding-bottom: 18px; }
+.detail-badge {
+  font-size: 8px; color: var(--ink); background: var(--gold);
+  border: 3px solid var(--cream); padding: 8px 10px;
+  white-space: nowrap; box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+}
+.detail-head h4 { font-size: clamp(18px, 3vw, 26px); color: var(--cream); margin-bottom: 8px; }
+.detail-head p { font-size: 13px; color: var(--cyan); }
+.detail-desc { font-size: 14px; color: var(--cream-dim); line-height: 1.8; margin: 18px 0; }
+.feat-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 24px; }
+.feat-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--cream); line-height: 1.6; }
+.feat-list li svg { flex-shrink: 0; margin-top: 3px; }
+.detail-xp { margin-top: 24px; padding-top: 16px; border-top: 3px dashed #4a4f70; font-size: 8px; color: var(--gold); }
+
+@media (max-width: 768px) {
+  .level-nodes { grid-template-columns: repeat(2, 1fr); gap: 24px 12px; }
+  .map-path { display: none; }
+  .feat-list { grid-template-columns: 1fr; }
+  .journey-detail { padding: 20px; }
+  .detail-head { flex-direction: column; }
+}

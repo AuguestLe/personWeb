@@ -1,0 +1,107 @@
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  background: rgba(26, 28, 44, 0.92);
+  border-bottom: 3px solid var(--cream);
+  box-shadow: 0 4px 0 rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  transition: background 0.3s;
+}
+.navbar.scrolled { background: rgba(26, 28, 44, 0.98); }
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  color: var(--cream);
+  font-size: 13px;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+.brand-mark {
+  width: 32px; height: 32px;
+  background: var(--gold);
+  border: 3px solid var(--cream);
+  display: grid;
+  place-items: center;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+}
+.brand-text { text-shadow: 2px 2px 0 var(--brick); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-link {
+  font-size: 9px;
+  color: var(--cream-dim);
+  background: transparent;
+  border: 2px solid transparent;
+  padding: 10px 12px;
+  transition: all 0.15s;
+  position: relative;
+}
+.nav-link:hover { color: var(--gold); }
+.nav-link.active {
+  color: var(--ink);
+  background: var(--gold);
+  border-color: var(--cream);
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+}
+
+.nav-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 8px;
+  color: var(--cyan);
+  border: 2px solid var(--cyan);
+  padding: 6px 9px;
+}
+.status-dot {
+  width: 7px; height: 7px;
+  background: var(--cyan);
+  animation: animate-blink 1.2s steps(1) infinite;
+}
+
+.nav-toggle { display: none; }
+
+@media (max-width: 900px) {
+  .nav-status { display: none; }
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--gold);
+    border: 3px solid var(--cream);
+    padding: 8px;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+  }
+  .nav-toggle span {
+    width: 20px; height: 3px;
+    background: var(--ink);
+  }
+  .nav-links {
+    position: absolute;
+    top: 68px; left: 0; right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--ink-soft);
+    border-bottom: 4px solid var(--cream);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .nav-links.open { max-height: 500px; }
+  .nav-link { text-align: left; padding: 16px 28px; border-bottom: 2px solid rgba(255,255,255,0.08); font-size: 11px; }
+}
